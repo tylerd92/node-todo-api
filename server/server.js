@@ -1,14 +1,23 @@
-require('./config/config');
+import './config/config.js';
 
-const _ = require('lodash');
-const express = require('express');
-const bodyParser = require('body-parser');
-const {ObjectID} = require('mongodb');
+// const _ = require('lodash');
+// const express = require('express');
+// const bodyParser = require('body-parser');
+// const {ObjectID} = require('mongodb');
 
-const {mongoose} = require('./db/mongoose');
-const {Todo} = require('./models/todo');
-const {User} = require('./models/user');
-const {authenticate} = require('./middleware/authenticate');
+// const {mongoose} = require('./db/mongoose');
+// const {Todo} = require('./models/todo');
+// const {User} = require('./models/user');
+// const {authenticate} = require('./middleware/authenticate');
+
+import _ from 'lodash';
+import express from 'express';
+import bodyParser from 'body-parser';
+import {ObjectID} from 'mongodb';
+import {mongoose} from './db/mongoose.js';
+import {Todo} from './models/todo.js';
+import {User} from './models/user.js';
+import {authenticate} from './middleware/authenticate.js';
 
 const app = express();
 const port = process.env.PORT;
@@ -41,7 +50,7 @@ app.get('/todos', authenticate, async (req, res) => {
 });
 
 app.get('/todos/:id', authenticate, async (req, res) => {
-    var id = req.params.id;
+    const id = req.params.id;
     if(!ObjectID.isValid(id)) {
         return res.status(404).send();
     } else {
@@ -151,4 +160,4 @@ app.listen(port, () => {
     console.log(`Started up at port ${port}`); 
 });
 
-module.exports = {app};
+export {app};

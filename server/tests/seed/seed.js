@@ -1,8 +1,12 @@
-const {ObjectID} = require('mongodb');
-const jwt = require('jsonwebtoken');
+// const {ObjectID} = require('mongodb');
+// const jwt = require('jsonwebtoken');
 
-const {Todo} = require('./../../models/todo');
-const {User} = require('./../../models/user');
+// const {Todo} = require('./../../models/todo.js');
+// const {User} = require('./../../models/user.js');
+import { ObjectId } from "mongodb";
+import jwt from "jsonwebtoken";
+import { Todo } from "./../../models/todo.js";
+import { User } from "./../../models/user.js";
 
 const userOneId = new ObjectID();
 const userTwoId = new ObjectID();
@@ -54,4 +58,4 @@ const populateUsers = (done) => {
     }).then(() => done());
 };
 
-module.exports = {todos, populateTodos, users, populateUsers};
+export {todos, populateTodos, users, populateUsers};
